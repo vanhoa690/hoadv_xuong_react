@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "../types/Product";
+import { Link } from "react-router-dom";
 
 type ProductCardProps = {
   product: Product;
@@ -32,7 +33,7 @@ function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Link to={`product/${product.id}`}>Learn More</Link>
       </CardActions>
     </Card>
   );

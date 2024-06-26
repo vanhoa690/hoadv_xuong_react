@@ -6,7 +6,7 @@ import Loading from "src/components/Loading";
 import { Product } from "src/types/Product";
 import Flash from "src/components/Flash";
 
-function Homepage() {
+function ProductList() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [flash, setFlash] = useState<Boolean>(false);
@@ -53,4 +53,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default ProductList;
