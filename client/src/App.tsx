@@ -6,7 +6,7 @@ import AdminProductEdit from "./pages/admin/product/Edit";
 
 const routeConfig = [
   {
-    path: "/admin",
+    path: "admin",
     element: <AdminLayout />,
     children: [
       {
