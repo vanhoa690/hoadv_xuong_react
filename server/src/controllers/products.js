@@ -1,14 +1,12 @@
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/ProductModel";
 import ApiError from "../utils/ApiError";
-import Bid from "../models/BidModel";
-import User from "../models/UserModel";
 
 class ProductsController {
   // GET /products
   async getAllProducts(req, res, next) {
     try {
-      const products = await Product.find();
+      const products = await Product.find().populate("category");
       res.status(StatusCodes.OK).json(products);
     } catch (error) {
       next(error);
