@@ -13,3 +13,12 @@ export type Category = {
   name: string;
   description: string;
 };
+
+export type ProductForm = {
+  title: string;
+  price: number;
+  image: string;
+  description: string;
+  category: string;
+  isShow: boolean;
+};
