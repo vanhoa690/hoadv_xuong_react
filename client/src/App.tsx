@@ -3,6 +3,9 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminProductList from "./pages/admin/product/List";
 import AdminProductAdd from "./pages/admin/product/Add";
 import AdminProductEdit from "./pages/admin/product/Edit";
+import ClientLayout from "./layouts/ClientLayout";
+import Homepage from "./pages/Homepage";
+import ProductDetail from "./pages/ProductDetail";
 
 const routeConfig = [
   {
@@ -20,6 +23,20 @@ const routeConfig = [
       {
         path: "product/edit/:id",
         element: <AdminProductEdit />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <ClientLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Homepage />,
+      },
+      {
+        path: "product/:id",
+        element: <ProductDetail />,
       },
     ],
   },
