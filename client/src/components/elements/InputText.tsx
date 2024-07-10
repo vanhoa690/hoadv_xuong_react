@@ -4,7 +4,7 @@ type InputTextProps = {
   label: string;
   input: any;
   messageError: string;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
 };
 
 export function InputText({
