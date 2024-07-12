@@ -5,10 +5,12 @@ import AdminProductAdd from "./pages/admin/product/Add";
 import AdminProductEdit from "./pages/admin/product/Edit";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ClientLayout from "./layouts/ClientLayout";
+import Cart from "./pages/Cart";
 
 const routeConfig = [
   {
-    path: "/admin",
+    path: "admin",
     element: <AdminLayout />,
     children: [
       {
@@ -23,23 +25,25 @@ const routeConfig = [
         path: "product/edit/:id",
         element: <AdminProductEdit />,
       },
+    ],
+  },
+  {
+    path: "/",
+    element: <ClientLayout />,
+    children: [
       {
         path: "register",
         element: <Register />,
       },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
     ],
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-  {
-    path: "/",
-    element: <Login />,
   },
 ];
 
