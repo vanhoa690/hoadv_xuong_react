@@ -48,7 +48,9 @@ function Header() {
                 <Button variant="outlined">Register</Button>
               </Link>
               <Badge badgeContent={cart} color="error">
-                <ShoppingCart sx={{ color: "blue" }} />
+                <Link to={"/cart"}>
+                  <ShoppingCart sx={{ color: "blue" }} />
+                </Link>
               </Badge>
             </Stack>
           </Toolbar>

@@ -45,15 +45,21 @@ function ProductDetail() {
 
   const handleAddToCart = (product: Product) => {
     if (!quantity) return;
-    const oldCarts: Cart[] = JSON.parse(localStorage.getItem("carts") || "[]");
+    let carts: Cart[] = JSON.parse(localStorage.getItem("carts") || "[]");
 
-    const carts = [
-      ...oldCarts,
-      {
-        product,
-        quantity,
-      },
-    ];
+    const existingItem = carts.find((item) => item.product._id === product._id);
+
+    if (existingItem) {
+      carts = carts.map((item) =>
+        item.product._id == product._id
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      );
+    } else {
+      carts.push({ product, quantity: 1 });
+    }
+    console.log(carts);
+
     setCart(carts.length);
     localStorage.setItem("carts", JSON.stringify(carts));
   };
