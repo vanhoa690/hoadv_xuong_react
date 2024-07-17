@@ -22,3 +22,8 @@ export type ProductFormParams = {
   category: string;
   isShow: boolean;
 };
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};

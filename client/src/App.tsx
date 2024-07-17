@@ -7,6 +7,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ClientLayout from "./layouts/ClientLayout";
 import Cart from "./pages/Cart";
+import Homepage from "./pages/Homepage";
+import ProductDetail from "./pages/ProductDetail";
 
 const routeConfig = [
   {
@@ -31,6 +33,14 @@ const routeConfig = [
     path: "/",
     element: <ClientLayout />,
     children: [
+      {
+        path: "/",
+        element: <Homepage />,
+      },
+      {
+        path: "product/:id",
+        element: <ProductDetail />,
+      },
       {
         path: "register",
         element: <Register />,

@@ -1,8 +1,9 @@
-import { Box, Stack, styled, Typography } from "@mui/material";
+import { Badge, Box, Stack, styled, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useCart } from "src/contexts/cart";
 
 const menus = [
   {
@@ -24,6 +25,8 @@ const menus = [
 ];
 
 const Header = () => {
+  const { cart } = useCart();
+
   return (
     <Wrapper
       sx={{ padding: "0 50px" }}
@@ -31,7 +34,7 @@ const Header = () => {
       justifyContent={"space-between"}
       alignItems={"center"}
     >
-      <img src="./logo.svg" alt="logo" />
+      <img src="/logo.svg" alt="logo" />
       <Stack direction={"row"} gap={"75px"}>
         {/* menu */}
         {menus.map((menu, index) => (
@@ -42,10 +45,12 @@ const Header = () => {
       </Stack>
       <Stack gap={"45px"} direction={"row"}>
         {/* icon  */}
-        <img src="./user.svg" alt="user" />
+        <img src="/user.svg" alt="user" />
         <SearchIcon />
         <FavoriteBorderIcon />
-        <img src="./cart.svg" alt="cart" />
+        <Badge badgeContent={cart} color="secondary">
+          <img src="/cart.svg" alt="cart" />
+        </Badge>
       </Stack>
     </Wrapper>
   );
