@@ -43,25 +43,30 @@ function ProductDetail() {
     getProduct(id);
   }, [id]);
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = async (product: Product) => {
     if (!quantity) return;
-    let carts: Cart[] = JSON.parse(localStorage.getItem("carts") || "[]");
-
-    const existingItem = carts.find((item) => item.product._id === product._id);
-
-    if (existingItem) {
-      carts = carts.map((item) =>
-        item.product._id == product._id
-          ? { ...item, quantity: item.quantity + quantity }
-          : item
-      );
-    } else {
-      carts.push({ product, quantity: 1 });
+    try {
+      await axios.post("/carts", { product, quantity });
+    } catch (error) {
+      
     }
-    console.log(carts);
+    // let carts: Cart[] = JSON.parse(localStorage.getItem("carts") || "[]");
 
-    setCart(carts.length);
-    localStorage.setItem("carts", JSON.stringify(carts));
+    // const existingItem = carts.find((item) => item.product._id === product._id);
+
+    // if (existingItem) {
+    //   carts = carts.map((item) =>
+    //     item.product._id == product._id
+    //       ? { ...item, quantity: item.quantity + quantity }
+    //       : item
+    //   );
+    // } else {
+    //   carts.push({ product, quantity: 1 });
+    // }
+    // console.log(carts);
+
+    // setCart(carts.length);
+    // localStorage.setItem("carts", JSON.stringify(carts));
   };
   return (
     <>
