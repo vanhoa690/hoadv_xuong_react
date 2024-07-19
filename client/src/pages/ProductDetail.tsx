@@ -39,21 +39,24 @@ function ProductDetail() {
     getProduct(id);
   }, [id]);
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = async (product: Product) => {
     if (quantity <= 0) return;
-    const cartStorage = localStorage.getItem("carts") || "[]";
-    const carts = JSON.parse(cartStorage);
+    try {
+      await axios.post("/carts", { product, quantity });
+    } catch (error) {}
+    // const cartStorage = localStorage.getItem("carts") || "[]";
+    // const carts = JSON.parse(cartStorage);
 
-    const findItem = carts.find(
-      (item: CartItem) => item.product._id === product._id
-    );
-    if (findItem) {
-      // tang quantity cho product: map
-    } else {
-      carts.push({ product, quantity });
-    }
-    localStorage.setItem("carts", JSON.stringify(carts));
-    setCart(carts.length);
+    // const findItem = carts.find(
+    //   (item: CartItem) => item.product._id === product._id
+    // );
+    // if (findItem) {
+    //   // tang quantity cho product: map
+    // } else {
+    //   carts.push({ product, quantity });
+    // }
+    // localStorage.setItem("carts", JSON.stringify(carts));
+    // setCart(carts.length);
   };
   return (
     <>

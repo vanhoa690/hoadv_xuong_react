@@ -3,16 +3,26 @@ import Banner from "src/components/Banner";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import { CartItem } from "src/types/Product";
+import axios from "axios";
 
 const labels = ["Product", "Price", "Quantity", "Subtotal", ""];
 function Cart() {
   const [carts, setCarts] = useState<CartItem[]>([]);
 
+  const getAllCarts = async () => {
+    try {
+      const userStorage = localStorage.getItem("user") || "{}";
+      const userId = JSON.parse(userStorage)?._id;
+      if (!userId) return;
+      const { data } = await axios.get(`/carts/user/${userId}`);
+      setCarts(data.products);
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    const cartStorage = localStorage.getItem("carts") || "[]";
-    const carts = JSON.parse(cartStorage);
-    setCarts(carts);
+    getAllCarts();
   }, []);
+
   return (
     <>
       <Banner />
