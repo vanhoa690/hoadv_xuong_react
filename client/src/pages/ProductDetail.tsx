@@ -13,10 +13,10 @@ import {
 import Loading from "src/components/Loading";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useCart } from "src/contexts/cart";
+import { useProductCart } from "src/hooks/useProductCart";
 
 function ProductDetail() {
-  const { setCart } = useCart();
+  const { addToCart } = useProductCart();
 
   const { id } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,24 +39,9 @@ function ProductDetail() {
     getProduct(id);
   }, [id]);
 
-  const handleAddToCart = async (product: Product) => {
+  const handleAddToCart = (product: Product) => {
     if (quantity <= 0) return;
-    try {
-      await axios.post("/carts", { product, quantity });
-    } catch (error) {}
-    // const cartStorage = localStorage.getItem("carts") || "[]";
-    // const carts = JSON.parse(cartStorage);
-
-    // const findItem = carts.find(
-    //   (item: CartItem) => item.product._id === product._id
-    // );
-    // if (findItem) {
-    //   // tang quantity cho product: map
-    // } else {
-    //   carts.push({ product, quantity });
-    // }
-    // localStorage.setItem("carts", JSON.stringify(carts));
-    // setCart(carts.length);
+    addToCart({ product, quantity });
   };
   return (
     <>

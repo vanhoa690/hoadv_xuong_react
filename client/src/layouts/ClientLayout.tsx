@@ -5,20 +5,25 @@ import Header from "src/components/Header";
 import Loading from "src/components/Loading";
 import { useCart } from "src/contexts/cart";
 import { useLoading } from "src/contexts/loading";
+import { useUser } from "src/contexts/user";
+import { User } from "src/types/User";
 
 function ClientLayout() {
   const { loading } = useLoading();
   const { setCart } = useCart();
+  const { setUser } = useUser();
 
   const getAllCarts = async () => {
     try {
       const userStorage = localStorage.getItem("user") || "{}";
-      const userId = JSON.parse(userStorage)?._id;
-      console.log(userId);
-      
+      const user: User = JSON.parse(userStorage);
+      setUser(user);
+      const userId = user?._id;
+      console.log({ userId });
       if (!userId) return;
       const { data } = await axios.get(`/carts/user/${userId}`);
-      setCart(data.products.length); // product * quantity
+      console.log(data);
+      setCart(data);
     } catch (error) {}
   };
 
