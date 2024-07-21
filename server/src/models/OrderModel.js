@@ -1,11 +1,28 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const CartSchema = new Schema(
+const OrderSchema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    payment: {
+      type: String,
+      enum: ["COD", "BANK"],
+      default: "COD",
     },
     products: [
       {
@@ -26,6 +43,6 @@ const CartSchema = new Schema(
   }
 );
 
-const Cart = mongoose.model("Cart", CartSchema);
+const Order = mongoose.model("Order", OrderSchema);
 
-export default Cart;
+export default Order;
