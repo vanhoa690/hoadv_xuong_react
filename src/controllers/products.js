@@ -6,7 +6,7 @@ class ProductsController {
   // GET /products
   async getAllProducts(req, res, next) {
     try {
-      const products = await Product.find().populate("category");
+      const products = await Product.find();
       res.status(StatusCodes.OK).json(products);
     } catch (error) {
       next(error);

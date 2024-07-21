@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const registerValidator = Joi.object({
-  username: Joi.string().min(3).max(10).required().messages({
+  username: Joi.string().min(3).max(100).required().messages({
     "any.required": "Username thieu roi",
     "string.min": "Username phai nhieu hon 3 ky tu",
   }),
