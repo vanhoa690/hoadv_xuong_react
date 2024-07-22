@@ -11,6 +11,13 @@ type AddToCart = {
 export const useProductCart = () => {
   const { user } = useUser();
   const { cart, setCart } = useCart();
+
+  const getCartUser = async () => {
+    if (!user) return;
+    const { data } = await axios.get(`/carts/user/${user._id}`);
+    setCart(data);
+  };
+
   const addToCart = async ({ product, quantity }: AddToCart) => {
     if (quantity <= 0 || !user) return;
     try {
@@ -38,12 +45,11 @@ export const useProductCart = () => {
     if (window.confirm("Remove Item Cart")) {
       try {
         await axios.delete(`/carts/user/${user._id}/product/${productId}`);
-        const { data } = await axios.get(`/carts/user/${user._id}`);
-        setCart(data);
+        getCartUser();
       } catch (error) {
         console.log(error);
       }
     }
   };
-  return { addToCart, removeToCart };
+  return { addToCart, removeToCart, getCartUser };
 };

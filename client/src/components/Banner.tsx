@@ -6,17 +6,17 @@ type BannerProps = {
   page: string;
 };
 
-const Banner = () => {
+const Banner = ({ page }: BannerProps) => {
   return (
     <>
       <BannerImage>
         <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
           <img />
-          <Typography fontSize={48}>Cart</Typography>
+          <Typography fontSize={48}>{page}</Typography>
           <Stack direction={"row"}>
             <Typography fontWeight={500}>Home</Typography>
             <NavigateNextIcon />
-            <Typography fontWeight={300}>Cart</Typography>
+            <Typography fontWeight={300}>{page}</Typography>
           </Stack>
         </Stack>
       </BannerImage>

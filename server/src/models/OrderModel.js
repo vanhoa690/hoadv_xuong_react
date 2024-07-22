@@ -24,6 +24,10 @@ const OrderSchema = new Schema(
       enum: ["COD", "BANK"],
       default: "COD",
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
     products: [
       {
         product: {
