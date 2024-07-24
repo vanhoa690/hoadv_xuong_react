@@ -5,6 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { LoadingProvider } from "./contexts/loading.tsx";
+import { UserProvider } from "./contexts/user.tsx";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -31,9 +32,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <LoadingProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <CartProvider>
-            <App />
-          </CartProvider>
+          <UserProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </UserProvider>
         </ThemeProvider>
       </LoadingProvider>
     </BrowserRouter>

@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useCart } from "src/contexts/cart";
+import { useMemo } from "react";
 
 const menus = [
   {
@@ -26,6 +27,13 @@ const menus = [
 
 const Header = () => {
   const { cart } = useCart();
+  // useMemo : return numberCart
+
+  const quantiyCart = useMemo(() => {
+    return cart
+      ? cart.products.reduce((total, item) => total + item.quantity, 0)
+      : 0;
+  }, [cart]);
 
   return (
     <Wrapper
@@ -48,7 +56,7 @@ const Header = () => {
         <img src="/user.svg" alt="user" />
         <SearchIcon />
         <FavoriteBorderIcon />
-        <Badge badgeContent={cart} color="secondary">
+        <Badge badgeContent={quantiyCart} color="secondary">
           <img src="/cart.svg" alt="cart" />
         </Badge>
       </Stack>

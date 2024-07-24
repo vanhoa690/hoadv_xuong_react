@@ -5,20 +5,23 @@ import Header from "src/components/Header";
 import Loading from "src/components/Loading";
 import { useCart } from "src/contexts/cart";
 import { useLoading } from "src/contexts/loading";
+import { useUser } from "src/contexts/user";
 
 function ClientLayout() {
   const { loading } = useLoading();
   const { setCart } = useCart();
+  const { setUser } = useUser();
 
   const getAllCarts = async () => {
     try {
       const userStorage = localStorage.getItem("user") || "{}";
-      const userId = JSON.parse(userStorage)?._id;
-      console.log(userId);
-      
-      if (!userId) return;
-      const { data } = await axios.get(`/carts/user/${userId}`);
-      setCart(data.products.length); // product * quantity
+      const user = JSON.parse(userStorage);
+      setUser(user);
+
+      if (!user) return;
+      const { data } = await axios.get(`/carts/user/${user._id}`);
+      console.log(data);
+      setCart(data);
     } catch (error) {}
   };
 

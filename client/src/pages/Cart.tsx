@@ -1,27 +1,19 @@
-import { Container, Stack, styled, Typography } from "@mui/material";
+import {
+  Container,
+  IconButton,
+  Stack,
+  styled,
+  Typography,
+} from "@mui/material";
 import Banner from "src/components/Banner";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useEffect, useState } from "react";
-import { CartItem } from "src/types/Product";
-import axios from "axios";
+import { useCart } from "src/contexts/cart";
+import { useProductCart } from "src/hooks/useProductCart";
 
 const labels = ["Product", "Price", "Quantity", "Subtotal", ""];
 function Cart() {
-  const [carts, setCarts] = useState<CartItem[]>([]);
-
-  const getAllCarts = async () => {
-    try {
-      const userStorage = localStorage.getItem("user") || "{}";
-      const userId = JSON.parse(userStorage)?._id;
-      if (!userId) return;
-      const { data } = await axios.get(`/carts/user/${userId}`);
-      setCarts(data.products);
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    getAllCarts();
-  }, []);
+  const { cart } = useCart();
+  const { removeToCart } = useProductCart();
 
   return (
     <>
@@ -41,7 +33,7 @@ function Cart() {
             ))}
           </LabelWrapper>
           {/* Cart Item */}
-          {carts.map((item, index) => (
+          {cart?.products.map((item, index) => (
             <Stack
               key={index}
               direction={"row"}
@@ -49,14 +41,16 @@ function Cart() {
               justifyContent={"space-between"}
             >
               <Stack direction={"row"} alignItems={"center"} gap={4}>
-                <img src="./product.png" />
+                <img src={item.product.image} width={'100px'} />
                 <Typography fontWeight={500}>{item.product.title}</Typography>
               </Stack>
 
               <Typography fontWeight={500}>25.000.000đ</Typography>
               <Typography fontWeight={500}>1</Typography>
               <Typography fontWeight={500}>25.000.000đ</Typography>
-              <DeleteIcon />
+              <IconButton onClick={() => removeToCart(item.product._id)}>
+                <DeleteIcon />
+              </IconButton>
             </Stack>
           ))}
         </Wrapper>
