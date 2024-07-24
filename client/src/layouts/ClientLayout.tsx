@@ -17,9 +17,11 @@ function ClientLayout() {
       const userStorage = localStorage.getItem("user") || "{}";
       const user: User = JSON.parse(userStorage);
       setUser(user);
+      console.log(user);
+      
       const userId = user?._id;
       console.log({ userId });
-      if (!userId) return;
+      // if (!userId) return;
       getCartUser();
     } catch (error) {}
   };

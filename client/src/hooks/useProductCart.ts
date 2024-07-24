@@ -13,6 +13,8 @@ export const useProductCart = () => {
   const { cart, setCart } = useCart();
 
   const getCartUser = async () => {
+    console.log({ user });
+
     if (!user) return;
     const { data } = await axios.get(`/carts/user/${user._id}`);
     setCart(data);
