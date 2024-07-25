@@ -92,7 +92,7 @@ function AdminProductList() {
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">{product.description}</TableCell>
                     <TableCell align="right">{product.image}</TableCell>
-                    <TableCell align="right">{product.category.name}</TableCell>
+                    {/* <TableCell align="right">{product.category.name}</TableCell> */}
                     <TableCell align="right">
                       <Stack
                         direction={"row"}
