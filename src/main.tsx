@@ -3,15 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
 import { LoadingProvider } from "./contexts/loading.tsx";
-
-axios.defaults.baseURL = "http://localhost:3000";
-
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { CartProvider } from "./contexts/cart.tsx";
 import { UserProvider } from "./contexts/user.tsx";
+import { configureAxios } from "./config/axios.ts";
 
 const theme = createTheme({
   // palette: {
@@ -26,6 +23,9 @@ const theme = createTheme({
     fontFamily: "Roboto, Arial, sans-serif",
   },
 });
+
+configureAxios();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

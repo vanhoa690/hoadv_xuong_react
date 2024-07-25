@@ -12,7 +12,7 @@ function Homepage() {
   const getAllProduct = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await axios.get("/products");
       setProducts(data);
     } catch (error) {
       console.log(error);
