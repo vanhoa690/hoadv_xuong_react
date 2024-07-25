@@ -57,9 +57,9 @@ function ProductDetail() {
               <Typography fontWeight={"bold"} color={"Highlight"}>
                 ${product.price}
               </Typography>
-              <Typography fontSize={"20px"}>
+              {/* <Typography fontSize={"20px"}>
                 Category: {product.category.name}
-              </Typography>
+              </Typography> */}
               <Stack direction={"row"} gap={2} alignItems={"center"}>
                 <Typography>Quantity: </Typography>
                 <IconButton
