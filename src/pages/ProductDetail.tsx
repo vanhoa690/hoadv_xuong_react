@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CartItem, Product } from "src/types/Product";
+import { Product } from "src/types/Product";
 import {
   Button,
   Container,

@@ -1,6 +1,4 @@
 import { Box, Stack, styled, Typography } from "@mui/material";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 type BannerProps = {
   page: string;
