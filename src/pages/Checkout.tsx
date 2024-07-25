@@ -7,7 +7,6 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  styled,
   Typography,
 } from "@mui/material";
 import Banner from "src/components/Banner";
@@ -145,12 +144,3 @@ function Checkout() {
 }
 
 export default Checkout;
-
-const Wrapper = styled(Stack)({
-  paddingTop: 72,
-});
-
-const LabelWrapper = styled(Stack)(({ theme }) => ({
-  background: "#F9F1E7",
-  height: 55,
-}));

@@ -78,7 +78,7 @@ const Wrapper = styled(Stack)({
   padding: 72,
 });
 
-const LabelWrapper = styled(Stack)(({ theme }) => ({
+const LabelWrapper = styled(Stack)(() => ({
   background: "#F9F1E7",
   height: 55,
 }));

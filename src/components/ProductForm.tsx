@@ -84,7 +84,7 @@ function ProductForm({ onSubmit, initialValues }: ProductFormProps) {
             <Field<string>
               name="isShow"
               type="checkbox"
-              render={({ input, meta }) => {
+              render={({ input }) => {
                 return (
                   <FormControlLabel
                     control={<Checkbox {...input} />}
