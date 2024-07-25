@@ -1,10 +1,10 @@
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
-import User from "../models/UserModel";
-import { registerValidator, loginValidator } from "../validations/auth";
-import ApiError from "../utils/ApiError";
-import { getUserByEmail } from "../services/user";
+import User from "../models/UserModel.js";
+import { registerValidator, loginValidator } from "../validations/auth.js";
+import ApiError from "../utils/ApiError.js";
+import { getUserByEmail } from "../services/user.js";
 
 class AuthController {
   async register(req, res, next) {
@@ -53,7 +53,7 @@ class AuthController {
       if (!checkPassword)
         throw new ApiError(StatusCodes.BAD_REQUEST, "Tai khoan ko hop le");
 
-      const token = jwt.sign({ id: checkUser._id }, "process.env.SECRET_KEY", {
+      const token = jwt.sign({ id: checkUser._id }, process.env.SECRET_KEY, {
         expiresIn: "1w",
       });
       res.status(StatusCodes.OK).json({

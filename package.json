@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "web503-nodejs-base",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "hoadv",
