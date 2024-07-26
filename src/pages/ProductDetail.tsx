@@ -21,7 +21,7 @@ function ProductDetail() {
   const { id } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
   const [product, setProduct] = useState<Product | undefined>();
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const getProduct = async (id: string) => {
     try {
