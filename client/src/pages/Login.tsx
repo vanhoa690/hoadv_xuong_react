@@ -5,6 +5,7 @@ import { Field, Form } from "react-final-form";
 import { useNavigate } from "react-router-dom";
 import { InputText } from "src/components/elements/InputText";
 import { MIN_PASSWORD } from "src/consts";
+import { useProductCart } from "src/hooks/useProductCart";
 import isEmail from "validator/lib/isEmail";
 
 type LoginFormParams = {
@@ -14,6 +15,7 @@ type LoginFormParams = {
 
 const Login = () => {
   const nav = useNavigate();
+  const { getCartUser } = useProductCart();
 
   const validate = (values: LoginFormParams) => {
     const { email, password } = values;
@@ -30,7 +32,8 @@ const Login = () => {
     try {
       const { data } = await axios.post("/auth/login", values);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user)); // luu object
+      localStorage.setItem("user", JSON.stringify(data.user)); // 
+      getCartUser()
       nav("/");
     } catch (error) {}
   };

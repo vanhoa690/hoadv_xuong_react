@@ -52,8 +52,9 @@ const Header = () => {
         ))}
       </Stack>
       <Stack gap={"45px"} direction={"row"}>
-        {/* icon  */}
-        <img src="/user.svg" alt="user" />
+        <Link to={"/login"}>
+          <img src="/user.svg" alt="user" />
+        </Link>
         <SearchIcon />
         <FavoriteBorderIcon />
         <Link to={"/cart"}>

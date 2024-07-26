@@ -9,11 +9,14 @@ type AddToCart = {
 };
 
 export const useProductCart = () => {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const { cart, setCart } = useCart();
 
   const getCartUser = async () => {
-    if (!user) return;
+    const userStorage = localStorage.getItem("user") || "{}";
+    const user = JSON.parse(userStorage);
+    setUser(user);
+    if (!user._id) return;
     const { data } = await axios.get(`/carts/user/${user._id}`);
     setCart(data);
   };
